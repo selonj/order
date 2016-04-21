@@ -1,9 +1,9 @@
-package test.com.selonj.spi;
+package test.com.selonj.order.spi;
 
-import com.selonj.Item;
-import com.selonj.spi.OrderProjection;
-import com.selonj.Owner;
-import com.selonj.spi.OwnerBasedProjection;
+import com.selonj.order.Item;
+import com.selonj.order.spi.OrderProjection;
+import com.selonj.order.Owner;
+import com.selonj.order.spi.OwnerBasedProjection;
 import java.util.List;
 import java.util.Map;
 import org.junit.Test;

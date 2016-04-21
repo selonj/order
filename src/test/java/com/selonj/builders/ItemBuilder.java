@@ -1,10 +1,9 @@
 package com.selonj.builders;
 
-import com.selonj.Item;
-import com.selonj.Owner;
+import com.selonj.order.Item;
+import com.selonj.order.Owner;
 
 import static com.selonj.builders.Builders.an;
-import static com.selonj.builders.Builders.item;
 import static com.selonj.builders.Builders.owner;
 
 /**

@@ -1,6 +1,6 @@
 package com.selonj.mocks;
 
-import com.selonj.spi.OrderNumberGenerator;
+import com.selonj.order.spi.OrderNumberGenerator;
 
 /**
  * Created by Administrator on 2016-04-21.

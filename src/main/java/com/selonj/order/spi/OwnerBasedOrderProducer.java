@@ -1,9 +1,9 @@
-package com.selonj.spi;
+package com.selonj.order.spi;
 
-import com.selonj.Item;
-import com.selonj.Order;
-import com.selonj.OrderProducer;
-import com.selonj.Owner;
+import com.selonj.order.Item;
+import com.selonj.order.Order;
+import com.selonj.order.OrderProducer;
+import com.selonj.order.Owner;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

@@ -1,8 +1,8 @@
-package com.selonj.spi;
+package com.selonj.order.spi;
 
-import com.selonj.Item;
-import com.selonj.Order;
-import com.selonj.Owner;
+import com.selonj.order.Item;
+import com.selonj.order.Order;
+import com.selonj.order.Owner;
 import java.util.List;
 
 /**

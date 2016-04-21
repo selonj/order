@@ -1,7 +1,7 @@
-package com.selonj.spi;
+package com.selonj.order.spi;
 
-import com.selonj.Item;
-import com.selonj.Owner;
+import com.selonj.order.Item;
+import com.selonj.order.Owner;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;

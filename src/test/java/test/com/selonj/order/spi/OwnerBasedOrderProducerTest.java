@@ -1,11 +1,11 @@
-package test.com.selonj.spi;
+package test.com.selonj.order.spi;
 
-import com.selonj.Item;
-import com.selonj.Order;
-import com.selonj.OrderProducer;
-import com.selonj.Owner;
+import com.selonj.order.Item;
+import com.selonj.order.Order;
+import com.selonj.order.OrderProducer;
+import com.selonj.order.Owner;
 import com.selonj.mocks.SequenceOrderNumberGenerator;
-import com.selonj.spi.OwnerBasedOrderProducer;
+import com.selonj.order.spi.OwnerBasedOrderProducer;
 import java.util.List;
 import org.junit.Test;
 

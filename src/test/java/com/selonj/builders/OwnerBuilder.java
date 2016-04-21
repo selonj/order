@@ -1,6 +1,6 @@
 package com.selonj.builders;
 
-import com.selonj.Owner;
+import com.selonj.order.Owner;
 
 /**
  * Created by L.x on 16-4-21.

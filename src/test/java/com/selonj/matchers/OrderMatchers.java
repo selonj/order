@@ -1,9 +1,9 @@
 package com.selonj.matchers;
 
-import com.selonj.Item;
-import com.selonj.Owner;
-import com.selonj.Order;
-import com.selonj.OrderLine;
+import com.selonj.order.Item;
+import com.selonj.order.Owner;
+import com.selonj.order.Order;
+import com.selonj.order.OrderLine;
 import org.hamcrest.FeatureMatcher;
 import org.hamcrest.Matcher;
 

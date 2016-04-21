@@ -1,8 +1,8 @@
-package com.selonj.spi;
+package com.selonj.order.spi;
 
-import com.selonj.Item;
-import com.selonj.ItemViolation;
-import com.selonj.OrderPolicy;
+import com.selonj.order.Item;
+import com.selonj.order.ItemViolation;
+import com.selonj.order.OrderPolicy;
 import java.util.List;
 
 /**

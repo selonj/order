@@ -1,6 +1,6 @@
-package com.selonj.spi;
+package com.selonj.order.spi;
 
-import com.selonj.ItemViolation;
+import com.selonj.order.ItemViolation;
 
 /**
  * Created by Administrator on 2016-04-21.

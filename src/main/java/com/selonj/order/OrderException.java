@@ -1,4 +1,4 @@
-package com.selonj;
+package com.selonj.order;
 
 import java.util.List;
 
