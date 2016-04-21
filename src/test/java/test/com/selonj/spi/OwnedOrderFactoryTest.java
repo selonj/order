@@ -4,8 +4,8 @@ import com.selonj.Item;
 import com.selonj.Owner;
 import com.selonj.Order;
 import com.selonj.spi.OwnedOrderFactory;
-import com.selonj.OrderFactory;
-import com.selonj.OrderNumberGenerator;
+import com.selonj.spi.OrderFactory;
+import com.selonj.spi.OrderNumberGenerator;
 import com.selonj.mocks.SequenceOrderNumberGenerator;
 import org.junit.Test;
 
@@ -22,7 +22,7 @@ import static org.junit.Assert.assertThat;
  * Created by Administrator on 2016-04-21.
  */
 public class OwnedOrderFactoryTest {
-  final private OrderNumberGenerator orderNumberGenerator = new SequenceOrderNumberGenerator(1);
+  final private OrderNumberGenerator orderNumberGenerator = SequenceOrderNumberGenerator.starts(1);
   final private OrderFactory factory = new OwnedOrderFactory(orderNumberGenerator);
 
   @Test public void createOrderFromItems() throws Exception {

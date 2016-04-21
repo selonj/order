@@ -1,7 +1,7 @@
 package test.com.selonj.spi;
 
 import com.selonj.Item;
-import com.selonj.ItemInventory;
+import com.selonj.spi.ItemInventory;
 import com.selonj.spi.ItemInventoryChecker;
 import com.selonj.ItemViolation;
 import java.util.ArrayList;
@@ -20,7 +20,8 @@ import static org.junit.Assert.assertThat;
  * Created by Administrator on 2016-04-21.
  */
 public class ItemInventoryCheckerTest {
-  final ItemInventory inventory = totalQuantityOfAnyItems(5);
+  private static final int TOTAL_QUANTITY = 5;
+  final ItemInventory inventory = totalQuantityOfAnyItems(TOTAL_QUANTITY);
   final ItemInventoryChecker checker = new ItemInventoryChecker(inventory);
 
   @Test public void markViolationWhenItemNotEnough() throws Exception {
@@ -30,6 +31,6 @@ public class ItemInventoryCheckerTest {
     checker.checking(item, violations);
 
     assertThat(violations, hasSize(1));
-    assertThat(violations, hasItem(hasNoEnoughItems(item.getItemId(), inventory.getStockQuantityOf(item))));
+    assertThat(violations, hasItem(hasNoEnoughItems(item.getItemId(), TOTAL_QUANTITY)));
   }
 }

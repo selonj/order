@@ -1,9 +1,8 @@
 package test.com.selonj.spi;
 
 import com.selonj.Item;
-import com.selonj.OrderProjection;
+import com.selonj.spi.OrderProjection;
 import com.selonj.Owner;
-import com.selonj.builders.Builders;
 import com.selonj.spi.OwnerBasedProjection;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +20,7 @@ import static org.junit.Assert.*;
  * Created by L.x on 16-4-21.
  */
 public class OwnerBasedProjectionTest {
-  final OrderProjection<Owner> projection = new OwnerBasedProjection();
+  final OrderProjection<Owner> projection = OwnerBasedProjection.getInstance();
 
   @Test public void sameOwnerOfAllItems() throws Exception {
     Owner owner = an(owner());

@@ -1,5 +1,7 @@
-package com.selonj;
+package com.selonj.spi;
 
+import com.selonj.Item;
+import com.selonj.Order;
 import java.util.List;
 
 /**

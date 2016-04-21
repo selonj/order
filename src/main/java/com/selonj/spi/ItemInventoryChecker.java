@@ -1,7 +1,6 @@
 package com.selonj.spi;
 
 import com.selonj.Item;
-import com.selonj.ItemInventory;
 import com.selonj.ItemViolation;
 import com.selonj.OrderPolicy;
 import java.util.List;

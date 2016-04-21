@@ -1,4 +1,6 @@
-package com.selonj;
+package com.selonj.spi;
+
+import com.selonj.Item;
 
 /**
  * Created by Administrator on 2016-04-21.

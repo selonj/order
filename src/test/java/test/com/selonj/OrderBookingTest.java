@@ -1,22 +1,18 @@
 package test.com.selonj;
 
-import com.selonj.OrderProjection;
-import com.selonj.spi.OwnedOrderFactory;
+import com.selonj.OrderProducer;
 import com.selonj.Item;
 import com.selonj.Owner;
 import com.selonj.ItemViolation;
 import com.selonj.Order;
 import com.selonj.OrderBooking;
 import com.selonj.OrderException;
-import com.selonj.OrderFactory;
 import com.selonj.OrderPolicy;
-import com.selonj.builders.Builders;
 import com.selonj.mocks.MockItemInventory;
 import com.selonj.mocks.SequenceOrderNumberGenerator;
 import com.selonj.spi.ItemInventoryChecker;
-import com.selonj.spi.OwnerBasedProjection;
+import com.selonj.spi.OwnerBasedOrderProducer;
 import java.util.List;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static com.selonj.builders.Builders.an;
@@ -36,11 +32,11 @@ import static org.junit.Assert.fail;
  * Created by Administrator on 2016-04-21.
  */
 public class OrderBookingTest {
-  final private MockItemInventory itemInventory = totalQuantityOfAnyItems(5);
-  final private OrderProjection projection = new OwnerBasedProjection();
-  final private OrderFactory orderFactory = new OwnedOrderFactory(new SequenceOrderNumberGenerator(1));
+  private static final int TOTAL_QUANTITY = 5;
+  final private MockItemInventory itemInventory = totalQuantityOfAnyItems(TOTAL_QUANTITY);
+  final private OrderProducer producer = OwnerBasedOrderProducer.newInstance(SequenceOrderNumberGenerator.starts(1));
   final private OrderPolicy orderPolicy = new ItemInventoryChecker(itemInventory);
-  final private OrderBooking booking = new OrderBooking(projection, orderFactory, orderPolicy);
+  final private OrderBooking booking = new OrderBooking(producer, orderPolicy);
 
   @Test public void createOrderFromItemsHasEnoughInventoryQuantity() throws Exception {
     Owner owner = an(owner());
@@ -50,8 +46,6 @@ public class OrderBookingTest {
     List<Order> orders = booking.create(item1, item2);
 
     assertThat(orders, hasSize(1));
-    assertThat(orders.get(0), belongsTo(owner));
-    assertThat(orders.get(0).getLines(), hasItems(sameItem(item1), sameItem(item2)));
   }
 
   @Test public void reportsItemViolationsWhenHaveLessInventoryQuantity() throws Exception {
@@ -66,8 +60,8 @@ public class OrderBookingTest {
       List<? super ItemViolation> violations = expected.getViolations();
 
       assertThat(violations, hasSize(2));
-      assertThat(violations, hasItem(hasNoEnoughItems(item1.getItemId(), itemInventory.getStockQuantityOf(item1))));
-      assertThat(violations, hasItem(hasNoEnoughItems(item3.getItemId(), itemInventory.getStockQuantityOf(item3))));
+      assertThat(violations, hasItem(hasNoEnoughItems(item1.getItemId(), TOTAL_QUANTITY)));
+      assertThat(violations, hasItem(hasNoEnoughItems(item3.getItemId(), TOTAL_QUANTITY)));
     }
   }
 
@@ -80,7 +74,5 @@ public class OrderBookingTest {
     List<Order> orders = booking.create(item1, other, item2);
 
     assertThat(orders, hasSize(2));
-    assertThat(orders.get(0).getLines(), hasItems(sameItem(item1), sameItem(item2)));
-    assertThat(orders.get(1).getLines(), hasItems(sameItem(other)));
   }
 }

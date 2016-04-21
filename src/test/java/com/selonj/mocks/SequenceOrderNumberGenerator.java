@@ -1,6 +1,6 @@
 package com.selonj.mocks;
 
-import com.selonj.OrderNumberGenerator;
+import com.selonj.spi.OrderNumberGenerator;
 
 /**
  * Created by Administrator on 2016-04-21.
@@ -8,8 +8,15 @@ import com.selonj.OrderNumberGenerator;
 public class SequenceOrderNumberGenerator implements OrderNumberGenerator {
   private int id;
 
-  public SequenceOrderNumberGenerator(int start) {
+  public SequenceOrderNumberGenerator() {
+  }
+
+  private SequenceOrderNumberGenerator(int start) {
     this.id = start;
+  }
+
+  public static SequenceOrderNumberGenerator starts(int start) {
+    return new SequenceOrderNumberGenerator(start);
   }
 
   @Override public String generate() {

@@ -1,5 +1,6 @@
-package com.selonj;
+package com.selonj.spi;
 
+import com.selonj.Item;
 import java.util.List;
 import java.util.Map;
 

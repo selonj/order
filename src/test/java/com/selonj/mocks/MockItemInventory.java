@@ -1,7 +1,7 @@
 package com.selonj.mocks;
 
 import com.selonj.Item;
-import com.selonj.ItemInventory;
+import com.selonj.spi.ItemInventory;
 
 /**
  * Created by Administrator on 2016-04-21.

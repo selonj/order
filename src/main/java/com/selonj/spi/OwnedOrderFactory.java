@@ -2,8 +2,6 @@ package com.selonj.spi;
 
 import com.selonj.Item;
 import com.selonj.Order;
-import com.selonj.OrderFactory;
-import com.selonj.OrderNumberGenerator;
 import com.selonj.Owner;
 import java.util.List;
 
