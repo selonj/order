@@ -5,12 +5,12 @@ import com.selonj.ItemViolation;
 /**
  * Created by Administrator on 2016-04-21.
  */
-public class ItemNotEnough implements ItemViolation {
+public class NoEnoughItems implements ItemViolation {
   private Integer itemId;
 
   private Integer stockQuantity;
 
-  ItemNotEnough(Integer itemId, Integer stockQuantity) {
+  NoEnoughItems(Integer itemId, Integer stockQuantity) {
     this.itemId = itemId;
     this.stockQuantity = stockQuantity;
   }
@@ -27,7 +27,7 @@ public class ItemNotEnough implements ItemViolation {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
 
-    ItemNotEnough that = (ItemNotEnough) o;
+    NoEnoughItems that = (NoEnoughItems) o;
 
     if (itemId != null ? !itemId.equals(that.itemId) : that.itemId != null) return false;
     return stockQuantity != null ? stockQuantity.equals(that.stockQuantity) : that.stockQuantity == null;

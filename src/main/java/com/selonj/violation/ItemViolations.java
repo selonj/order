@@ -7,6 +7,6 @@ import com.selonj.ItemViolation;
  */
 public class ItemViolations {
   public static ItemViolation hasNoEnoughItems(Integer itemId, Integer stockQuantity) {
-    return new ItemNotEnough(itemId, stockQuantity);
+    return new NoEnoughItems(itemId, stockQuantity);
   }
 }
