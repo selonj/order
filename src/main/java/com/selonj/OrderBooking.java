@@ -1,25 +1,30 @@
 package com.selonj;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2016-04-21.
  */
 public class OrderBooking {
-  private OrderFactory orderFactory;
+  private OrderProjection<?> projection;
+  private OrderFactory<Object> orderFactory;
   private OrderPolicy orderPolicy;
 
-  public OrderBooking(OrderFactory orderFactory, OrderPolicy orderPolicy) {
-    this.orderFactory = orderFactory;
+  public <G> OrderBooking(OrderProjection<G> projection, OrderFactory<G> orderFactory, OrderPolicy orderPolicy) {
+    this.projection = projection;
+    this.orderFactory = (OrderFactory<Object>) orderFactory;
     this.orderPolicy = orderPolicy;
   }
 
   public List<Order> create(Item... items) throws OrderException {
     validate(items);
+    Map<?, List<Item>> groups = projection.grouping(items);
     List<Order> orders = new ArrayList<>();
-    orders.add(orderFactory.create(Arrays.asList(items)));
+    for (Map.Entry<?, List<Item>> group : groups.entrySet()) {
+      orders.add(orderFactory.create(group.getKey(), group.getValue()));
+    }
     return orders;
   }
 

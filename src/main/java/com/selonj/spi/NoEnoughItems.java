@@ -1,4 +1,4 @@
-package com.selonj.violation;
+package com.selonj.spi;
 
 import com.selonj.ItemViolation;
 

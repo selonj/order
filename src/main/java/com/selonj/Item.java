@@ -6,6 +6,7 @@ package com.selonj;
 public class Item {
   private Integer itemId;
   private int quantity;
+  private Owner owner;
 
   public Integer getItemId() {
     return itemId;
@@ -21,5 +22,13 @@ public class Item {
 
   public void setQuantity(int quantity) {
     this.quantity = quantity;
+  }
+
+  public Owner getOwner() {
+    return owner;
+  }
+
+  public void setOwner(Owner owner) {
+    this.owner = owner;
   }
 }

@@ -9,8 +9,10 @@ import java.util.List;
 public class Order {
   private List<OrderLine> lines;
   private String orderNumber;
+  private Owner owner;
 
-  public Order(String orderNumber) {
+  public Order(Owner owner, String orderNumber) {
+    this.owner = owner;
     this.orderNumber = orderNumber;
   }
 
@@ -31,5 +33,9 @@ public class Order {
 
   public String getOrderNumber() {
     return orderNumber;
+  }
+
+  public Owner getOwner() {
+    return owner;
   }
 }

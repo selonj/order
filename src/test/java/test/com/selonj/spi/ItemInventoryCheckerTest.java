@@ -1,8 +1,8 @@
-package test.com.selonj;
+package test.com.selonj.spi;
 
 import com.selonj.Item;
 import com.selonj.ItemInventory;
-import com.selonj.policy.ItemInventoryChecker;
+import com.selonj.spi.ItemInventoryChecker;
 import com.selonj.ItemViolation;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.junit.Test;
 import static com.selonj.builders.Builders.an;
 import static com.selonj.builders.Builders.item;
 import static com.selonj.mocks.MockItemInventory.totalQuantityOfAnyItems;
-import static com.selonj.violation.ItemViolations.hasNoEnoughItems;
+import static com.selonj.spi.ItemViolations.hasNoEnoughItems;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
