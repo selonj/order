@@ -8,6 +8,11 @@ import java.util.List;
  */
 public class Order {
   private List<OrderLine> lines;
+  private String orderNumber;
+
+  public Order(String orderNumber) {
+    this.orderNumber = orderNumber;
+  }
 
   public void add(Item item) {
     add(new OrderLine(item));
@@ -22,5 +27,9 @@ public class Order {
 
   public List<OrderLine> getLines() {
     return lines;
+  }
+
+  public String getOrderNumber() {
+    return orderNumber;
   }
 }

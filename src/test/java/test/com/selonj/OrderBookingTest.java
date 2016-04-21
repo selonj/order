@@ -9,6 +9,7 @@ import com.selonj.OrderException;
 import com.selonj.OrderFactory;
 import com.selonj.OrderPolicy;
 import com.selonj.mocks.MockItemInventory;
+import com.selonj.mocks.SequenceOrderNumberGenerator;
 import com.selonj.policy.ItemInventoryChecker;
 import java.util.List;
 import org.junit.Test;
@@ -28,7 +29,7 @@ import static org.junit.Assert.fail;
 public class OrderBookingTest {
   final private MockItemInventory itemInventory = totalQuantityOfAnyItems(5);
 
-  final private OrderFactory orderFactory = new BasicOrderFactory();
+  final private OrderFactory orderFactory = new BasicOrderFactory(new SequenceOrderNumberGenerator(1));
   final private OrderPolicy orderPolicy = new ItemInventoryChecker(itemInventory);
   final private OrderBooking booking = new OrderBooking(orderFactory, orderPolicy);
 

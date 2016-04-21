@@ -18,10 +18,6 @@ public class OrderBooking {
 
   public List<Order> create(Item... items) throws OrderException {
     validate(items);
-    return createOrders(items);
-  }
-
-  private List<Order> createOrders(Item[] items) {
     List<Order> orders = new ArrayList<>();
     orders.add(orderFactory.create(Arrays.asList(items)));
     return orders;
