@@ -8,26 +8,27 @@ sourceCompatibility = jdkVersion
 targetCompatibility = jdkVersion
 
 repositories {
-    mavenCentral()
-    mavenLocal()
-    jcenter()
+  mavenCentral()
+  mavenLocal()
+  jcenter()
 }
 
 dependencies {
-    testCompile('junit:junit:4.+') {
-        exclude group: 'org.hamcrest'
-    }
-    testCompile 'org.hamcrest:hamcrest-library:1.+'
+  testCompile('junit:junit:4.+') {
+    exclude group: 'org.hamcrest'
+  }
+  testCompile 'org.hamcrest:hamcrest-library:1.+'
+  testCompile 'org.jmock:jmock-junit4:2.6.0'
 }
 
 tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+  options.encoding = 'UTF-8'
 }
 
 apply plugin: 'idea'
 idea {
-    module {
-        excludeDirs = [file('.idea'), file('.gradle'), file('gradle')]
-        downloadSources = false
-    }
+  module {
+    excludeDirs = [file('.idea'), file('.gradle'), file('gradle')]
+    downloadSources = false
+  }
 }

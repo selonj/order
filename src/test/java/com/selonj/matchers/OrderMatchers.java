@@ -21,7 +21,7 @@ public class OrderMatchers {
     };
   }
 
-  public static Matcher<? super Order> belongsTo(Owner owner) {
+  public static Matcher<Order> belongsTo(Owner owner) {
     return new FeatureMatcher<Order, Integer>(equalTo(owner.getId()), "owner", "but") {
       @Override protected Integer featureValueOf(Order order) {
         return order.getOwner().getId();

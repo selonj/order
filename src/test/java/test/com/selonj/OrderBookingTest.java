@@ -2,6 +2,7 @@ package test.com.selonj;
 
 import com.selonj.OrderProducer;
 import com.selonj.Item;
+import com.selonj.OrderRepository;
 import com.selonj.Owner;
 import com.selonj.ItemViolation;
 import com.selonj.Order;
@@ -13,13 +14,15 @@ import com.selonj.mocks.SequenceOrderNumberGenerator;
 import com.selonj.spi.ItemInventoryChecker;
 import com.selonj.spi.OwnerBasedOrderProducer;
 import java.util.List;
+import org.jmock.Expectations;
+import org.jmock.integration.junit4.JUnitRuleMockery;
+import org.junit.Rule;
 import org.junit.Test;
 
 import static com.selonj.builders.Builders.an;
 import static com.selonj.builders.Builders.item;
 import static com.selonj.builders.Builders.owner;
 import static com.selonj.matchers.OrderMatchers.belongsTo;
-import static com.selonj.matchers.OrderMatchers.sameItem;
 import static com.selonj.mocks.MockItemInventory.totalQuantityOfAnyItems;
 import static com.selonj.spi.ItemViolations.hasNoEnoughItems;
 import static org.hamcrest.Matchers.hasItem;
@@ -33,15 +36,22 @@ import static org.junit.Assert.fail;
  */
 public class OrderBookingTest {
   private static final int TOTAL_QUANTITY = 5;
+  @Rule
+  public JUnitRuleMockery context = new JUnitRuleMockery();
+  final private OrderRepository orderRepository = context.mock(OrderRepository.class);
   final private MockItemInventory itemInventory = totalQuantityOfAnyItems(TOTAL_QUANTITY);
   final private OrderProducer producer = OwnerBasedOrderProducer.newInstance(SequenceOrderNumberGenerator.starts(1));
   final private OrderPolicy orderPolicy = new ItemInventoryChecker(itemInventory);
-  final private OrderBooking booking = new OrderBooking(producer, orderPolicy);
+  final private OrderBooking booking = new OrderBooking(producer, orderRepository, orderPolicy);
 
   @Test public void createOrderFromItemsHasEnoughInventoryQuantity() throws Exception {
-    Owner owner = an(owner());
+    final Owner owner = an(owner());
     Item item1 = an(item().of(owner));
     Item item2 = an(item().of(owner));
+
+    context.checking(new Expectations() {{
+      oneOf(orderRepository).create(with(belongsTo(owner)));
+    }});
 
     List<Order> orders = booking.create(item1, item2);
 
@@ -70,9 +80,16 @@ public class OrderBookingTest {
     Item item1 = an(item().of(owner));
     Item item2 = an(item().of(owner));
     Item other = an(item());
+    ignoring(orderRepository);
 
     List<Order> orders = booking.create(item1, other, item2);
 
     assertThat(orders, hasSize(2));
+  }
+
+  private void ignoring(final OrderRepository orderRepository) {
+    context.checking(new Expectations() {{
+      ignoring(orderRepository);
+    }});
   }
 }

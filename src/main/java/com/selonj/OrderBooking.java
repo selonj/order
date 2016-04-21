@@ -8,16 +8,22 @@ import java.util.List;
  */
 public class OrderBooking {
   private OrderProducer producer;
+  private OrderRepository orderRepository;
   private OrderPolicy orderPolicy;
 
-  public OrderBooking(OrderProducer producer, OrderPolicy orderPolicy) {
+  public OrderBooking(OrderProducer producer, OrderRepository orderRepository, OrderPolicy orderPolicy) {
     this.producer = producer;
+    this.orderRepository = orderRepository;
     this.orderPolicy = orderPolicy;
   }
 
   public List<Order> create(Item... items) throws OrderException {
     validate(items);
-    return producer.produce(items);
+    List<Order> orders = producer.produce(items);
+    for (Order order : orders) {
+      orderRepository.create(order);
+    }
+    return orders;
   }
 
   private void validate(Item[] items) {
