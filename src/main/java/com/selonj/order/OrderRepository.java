@@ -8,5 +8,5 @@ public interface OrderRepository {
 
   Order getOrderById(Integer id);
 
-
+  void save(Order order);
 }

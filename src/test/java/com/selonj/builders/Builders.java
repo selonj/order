@@ -12,7 +12,7 @@ public class Builders {
     return the(builder);
   }
 
-  private static <T> T the(Builder<T> builder) {
+  public static <T> T the(Builder<T> builder) {
     return builder.build();
   }
 

@@ -1,5 +1,6 @@
 package com.selonj.mocks;
 
+import com.selonj.builders.IDs;
 import com.selonj.order.Order;
 import com.selonj.order.OrderRepository;
 import java.util.HashMap;
@@ -12,11 +13,16 @@ public class MemoryOrderRepository implements OrderRepository {
   private Map<Integer, Order> orders = new HashMap<>();
 
   @Override public void create(Order order) {
-    orders.put(order.getId(), order);
+    order.setId(IDs.next());
+    save(order);
   }
 
   @Override public Order getOrderById(Integer id) {
     return orders.get(id);
+  }
+
+  @Override public void save(Order order) {
+    orders.put(order.getId(), order);
   }
 
   public boolean contains(Order order) {

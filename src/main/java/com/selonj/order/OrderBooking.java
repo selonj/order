@@ -34,6 +34,7 @@ public class OrderBooking {
 
   public void confirm(Order order) {
     Order saved = orderRepository.getOrderById(order.getId());
-    saved.shippingAddress = order.shippingAddress;
+    saved.merge(order);
+    orderRepository.save(saved);
   }
 }

@@ -10,7 +10,7 @@ public class Order {
   private Integer id;
   private String orderNumber;
   private Owner owner;
-  public ShippingAddress shippingAddress;
+  private ShippingAddress shippingAddress;
   private List<OrderLine> lines;
 
   public Order(Owner owner, String orderNumber) {
@@ -46,7 +46,24 @@ public class Order {
     return owner;
   }
 
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
   public Integer getId() {
     return id;
+  }
+
+  public ShippingAddress getShippingAddress() {
+    return shippingAddress;
+  }
+
+  public void setShippingAddress(ShippingAddress shippingAddress) {
+    this.shippingAddress = shippingAddress;
+  }
+
+  public void merge(Order other) {
+    shippingAddress = other.shippingAddress;
+    lines = other.lines;
   }
 }

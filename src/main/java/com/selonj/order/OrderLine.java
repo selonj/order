@@ -13,4 +13,8 @@ public class OrderLine {
   public Integer getItemId() {
     return itemId;
   }
+
+  public boolean sameItem(Item item) {
+    return itemId.equals(item.getItemId());
+  }
 }

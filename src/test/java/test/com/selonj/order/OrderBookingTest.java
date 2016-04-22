@@ -16,6 +16,7 @@ import com.selonj.order.spi.ItemInventoryChecker;
 import com.selonj.order.spi.OwnerBasedOrderProducer;
 import java.util.List;
 import org.jmock.integration.junit4.JUnitRuleMockery;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -25,6 +26,7 @@ import static com.selonj.builders.Builders.item;
 import static com.selonj.builders.Builders.order;
 import static com.selonj.builders.Builders.owner;
 import static com.selonj.builders.Builders.shippingAddress;
+import static com.selonj.matchers.OrderMatchers.sameItem;
 import static com.selonj.mocks.MockItemInventory.totalQuantityOfAnyItems;
 import static com.selonj.order.spi.ItemViolations.hasNoEnoughItems;
 import static org.hamcrest.Matchers.equalTo;
@@ -95,7 +97,20 @@ public class OrderBookingTest {
     booking.confirm(an(order().from(created).shippingAddress(shippingAddress)));
 
     Order merged = orderRepository.getOrderById(created.getId());
-    assertThat(merged.shippingAddress, equalTo(shippingAddress));
+    assertThat(merged.getShippingAddress(), equalTo(shippingAddress));
+  }
+
+  @Test public void removeOrderLineWhenOrderUnconfirmed() throws Exception {
+    Owner owner = an(owner());
+    Item item1 = an(item().of(owner));
+    Item item2 = an(item().of(owner));
+    Order created = first(booking.create(item1, item2));
+
+    booking.confirm(an(order().from(created).without(item1)));
+
+    Order merged = orderRepository.getOrderById(created.getId());
+    assertThat(merged.getLines(), hasSize(1));
+    assertThat(merged.getLines(), hasItem(sameItem(item2)));
   }
 
   private static <T> T first(List<T> items) {
