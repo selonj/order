@@ -7,11 +7,18 @@ import java.util.List;
  * Created by Administrator on 2016-04-21.
  */
 public class Order {
-  private List<OrderLine> lines;
+  private Integer id;
   private String orderNumber;
   private Owner owner;
+  public ShippingAddress shippingAddress;
+  private List<OrderLine> lines;
 
   public Order(Owner owner, String orderNumber) {
+    this(null, owner, orderNumber);
+  }
+
+  public Order(Integer id, Owner owner, String orderNumber) {
+    this.id = id;
     this.owner = owner;
     this.orderNumber = orderNumber;
   }
@@ -20,7 +27,7 @@ public class Order {
     add(new OrderLine(item));
   }
 
-  private void add(OrderLine orderLine) {
+  public void add(OrderLine orderLine) {
     if (lines == null) {
       lines = new ArrayList<>();
     }
@@ -37,5 +44,9 @@ public class Order {
 
   public Owner getOwner() {
     return owner;
+  }
+
+  public Integer getId() {
+    return id;
   }
 }

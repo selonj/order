@@ -31,4 +31,9 @@ public class OrderBooking {
     for (Item item : items) orderPolicy.checking(item, violations);
     if (!violations.isEmpty()) throw new OrderException(violations);
   }
+
+  public void confirm(Order order) {
+    Order saved = orderRepository.getOrderById(order.getId());
+    saved.shippingAddress = order.shippingAddress;
+  }
 }

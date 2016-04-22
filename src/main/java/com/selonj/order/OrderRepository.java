@@ -5,4 +5,8 @@ package com.selonj.order;
  */
 public interface OrderRepository {
   void create(Order order);
+
+  Order getOrderById(Integer id);
+
+
 }

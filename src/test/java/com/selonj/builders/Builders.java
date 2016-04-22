@@ -5,6 +5,14 @@ package com.selonj.builders;
  */
 public class Builders {
   public static <T> T an(Builder<T> builder) {
+    return the(builder);
+  }
+
+  public static <T> T a(Builder<T> builder) {
+    return the(builder);
+  }
+
+  private static <T> T the(Builder<T> builder) {
     return builder.build();
   }
 
@@ -18,5 +26,13 @@ public class Builders {
 
   public static OwnerBuilder owner(int id) {
     return new OwnerBuilder().id(id);
+  }
+
+  public static OrderBuilder order() {
+    return new OrderBuilder();
+  }
+
+  public static ShippingAddressBuilder shippingAddress() {
+    return new ShippingAddressBuilder();
   }
 }
